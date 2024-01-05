@@ -13,7 +13,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Run Lint
-        run: npm lint
+        run: npm run lint
   test:
     runs-on: ubuntu-latest
     steps:
@@ -39,4 +39,10 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Run Build
-        run: npm build
+        run: npm run build
+  deploy:
+    needs: [lint, test, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: echo 'Deployuing . . .'
